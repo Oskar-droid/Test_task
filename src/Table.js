@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Table() {
+
+    const [users, setUsers] = useState([]);
+
+    //API
+    useEffect(() => {
+        fetch('https://opendata.ecdc.europa.eu/covid19/casedistribution/json/')
+            .then(response => response.json())
+            .then(data => setUsers(data.records))
+            .catch(error => console.error('Fetch error: ', error))
+    }, []);
+
+    console.log(users)
+
     return (
         <>
             <div className='main_table'>
                 Период от <input type='date' /> до <input type='date' /> <br /><br />
 
-                <input type='button' value='Taблица' className='table_btn' />
+                <input type='button' value='Taблица' className='table_btn' autoFocus />
                 <input type='button' value='График' className='char_btn' />
                 <div className='info_container'>
                     <menu>
@@ -35,21 +48,20 @@ function Table() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>john.doe@example.com</td>
-                                <td>(123) 456-7890</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jane Smith</td>
-                                <td>jane.smith@example.com</td>
-                                <td>(456) 789-0123</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
+                            {users.slice(0, 10).map((user, i) => {
+                                return (
+
+                                    <tr key={i}>
+                                        <td>{user.countriesAndTerritories}</td>
+                                        <td>{}</td>
+                                        <td>{}</td>
+                                        <td>{user.cases}</td>
+                                        <td>{user.deaths}</td>
+                                        <td>{}</td>
+                                        <td>{}</td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

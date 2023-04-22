@@ -16,11 +16,30 @@ function List() {
     return (
       <div>
         <h1>User List</h1>
-        <ul>
-        {users.slice(0, 10).map((user, i) => {
-          return <li key={i}>{user.dateRep}</li>
-        })}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Countries and territories</th>
+              <th>Cases</th>
+              <th>Deaths</th>
+              <th>PopData2019</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.slice(0, 10).map((user, i) => {
+              return (
+                <tr key={i}>
+                  <td>{user.dateRep}</td>
+                  <td>{user.countriesAndTerritories}</td>
+                  <td>{user.cases}</td>
+                  <td>{user.deaths}</td>
+                  <td>{user.popData2019}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }
