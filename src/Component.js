@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
-class List extends Component {
-  state = {
-    users: []
-  }
+function List() {
 
-  componentDidMount() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
     fetch('https://opendata.ecdc.europa.eu/covid19/casedistribution/json/')
       .then(response => response.json())
-      .then(data => this.setState({ users: data.records }))
+      .then(data => setUsers(data.records))
       .catch(error => console.error('Fetch error: ', error))
-  }
-
-  render() {
-    const { users } = this.state;
+  }, []);
 
     console.log(users)
+
     return (
       <div>
         <h1>User List</h1>
         <ul>
-        {users.slice(0, 10).map((users, i) => {
-          return <li key={i}>text</li>
+        {users.slice(0, 10).map((user, i) => {
+          return <li key={i}>{user.dateRep}</li>
         })}
         </ul>
       </div>
     );
   }
-}
 
 export default List;

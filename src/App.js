@@ -7,7 +7,7 @@ function App() {
   return (
 
     <>
-      
+      <List />
       <Table />
     </>
 
