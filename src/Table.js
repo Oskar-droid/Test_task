@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Country from './Country.js';
 
 function Table() {
 
@@ -12,8 +13,6 @@ function Table() {
             .catch(error => console.error('Fetch error: ', error))
     }, []);
 
-    console.log(users)
-
     return (
         <>
             <div className='main_table'>
@@ -23,7 +22,7 @@ function Table() {
                 <input type='button' value='График' className='char_btn' />
                 <div className='info_container'>
                     <menu>
-                        <input type='text' placeholder='Поиск страны' />
+                    <Country />
                         <select>
                             <option selected>Выберете Фильтр</option>
                             <option>Фильтр 1</option>

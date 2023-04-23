@@ -55,6 +55,7 @@ code {
 
 menu {
   width: 70%;
+  height: 42px;
   margin: 0;
   padding: 0;
   display: flex;
@@ -64,6 +65,7 @@ menu {
 menu * {
   background-color: rgb(238, 238, 238);
   border: var(--default_border);
+  box-sizing: border-box;
 }
 
 input {
