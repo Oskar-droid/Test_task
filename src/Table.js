@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Country from './Country.js';
 
 function Table() {
 
     const [users, setUsers] = useState([]);
+    const [country, setCountry] = useState('');
+
 
     //API
     useEffect(() => {
@@ -12,6 +13,11 @@ function Table() {
             .then(data => setUsers(data.records))
             .catch(error => console.error('Fetch error: ', error))
     }, []);
+
+    //Input change listener
+    const inputChange = (event) => {
+        setCountry(event.target.value);
+    };
 
     return (
         <>
@@ -22,7 +28,7 @@ function Table() {
                 <input type='button' value='График' className='char_btn' />
                 <div className='info_container'>
                     <menu>
-                    <Country />
+                    <input type='text' placeholder='Поиск страны' value={country} onChange={inputChange} id="country" />
                         <select>
                             <option selected>Выберете Фильтр</option>
                             <option>Фильтр 1</option>
