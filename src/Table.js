@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function Table() {
 
-    const [users, setUsers] = useState([]);
+    const [allCountries, setAllCountries] = useState([]);
     const [country, setCountry] = useState('');
 
 
@@ -10,7 +10,7 @@ function Table() {
     useEffect(() => {
         fetch('https://opendata.ecdc.europa.eu/covid19/casedistribution/json/')
             .then(response => response.json())
-            .then(data => setUsers(data.records))
+            .then(data => setAllCountries(data.records))
             .catch(error => console.error('Fetch error: ', error))
     }, []);
 
@@ -18,6 +18,10 @@ function Table() {
     const inputChange = (event) => {
         setCountry(event.target.value);
     };
+
+    const filteredCountries = allCountries.filter((countryElement) => {
+        return countryElement.countriesAndTerritories.toLowerCase().includes(country.toLowerCase());
+      });
 
     return (
         <>
@@ -53,15 +57,14 @@ function Table() {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.slice(0, 10).map((user, i) => {
+                            {filteredCountries.slice(0, 10).map((countryElement, i) => {
                                 return (
-
                                     <tr key={i}>
-                                        <td>{user.countriesAndTerritories}</td>
+                                        <td>{countryElement.countriesAndTerritories}</td>
                                         <td>{}</td>
                                         <td>{}</td>
-                                        <td>{user.cases}</td>
-                                        <td>{user.deaths}</td>
+                                        <td>{countryElement.cases}</td>
+                                        <td>{countryElement.deaths}</td>
                                         <td>{}</td>
                                         <td>{}</td>
                                     </tr>

@@ -92,6 +92,10 @@ table th {
   background-color: rgba(255, 168, 136, 0.747);
 }
 
+table td:first-child {
+  width: 322px;
+}
+
 .info_container {
   background-color: var(--container_bg);
   border: var(--default_border);
