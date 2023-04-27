@@ -22,6 +22,15 @@ function Table() {
     const filteredCountries = allCountries.filter((countryElement) => {
         return countryElement.countriesAndTerritories.toLowerCase().includes(country.toLowerCase());
       });
+      
+      const filteredData = allCountries.filter((countryElement) => {
+        return {
+            name: countryElement.countriesAndTerritories,
+            uv: countryElement.cases,
+            pv: countryElement.deaths,
+            amt: countryElement.cases + countryElement.deaths
+        };
+      });
 
     return (
         <>
@@ -29,7 +38,7 @@ function Table() {
                 Период от <input type='date' /> до <input type='date' /> <br /><br />
 
                 <input type='button' value='Taблица' className='table_btn' autoFocus />
-                <input type='button' value='График' className='char_btn' />
+                <input type='button' value='График' className='chart_btn' />
                 <div className='info_container'>
                     <menu>
                     <input type='text' placeholder='Поиск страны' value={country} onChange={inputChange} id="country" />

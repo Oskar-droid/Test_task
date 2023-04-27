@@ -29,7 +29,7 @@ code {
   padding: 2px;
 }
 
-.table_btn, .char_btn {
+.table_btn, .chart_btn {
   border: var(--default_border);
   background-color: var(--container_bg);
   width: 100px;
@@ -45,11 +45,11 @@ code {
   cursor: pointer;
 }
 
-.table_btn:active, .char_btn:active, .filer_remove_btn:active {
+.table_btn:active, .chart_btn:active, .filer_remove_btn:active {
   box-shadow: 0px 0px 2px gray;
 }
 
-.table_btn:focus, .char_btn:focus {
+.table_btn:focus, .chart_btn:focus {
   background-color: rgba(117, 189, 182, 0.932);
 }
 
