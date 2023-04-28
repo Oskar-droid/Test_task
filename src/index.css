@@ -100,3 +100,8 @@ table td:first-child {
   border: var(--default_border);
   padding: 5px;
 }
+
+.chart_select, option {
+  margin-right: 400px;
+  width: 200px;
+}

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Table from './Table';
 import Config from './config'
-import { atom, useAtom } from "jotai";
-import Example from "./ChartExample";
+import Chart from "./Chart";
 
 function App() {
   const tabsNames = {
@@ -13,12 +12,11 @@ function App() {
   
   const [allCountries, setAllCountries] = useState([]);
   const [country, setCountry] = useState('');
-  const [currentTab, setCurrentTab] = useState(tabsNames.table);
+  const [currentTab, setCurrentTab] = useState(tabsNames.chart);
   const [tableState, setTableState] = useState('');
 
   //API
   useEffect(() => {
-    console.log('effect')
     fetch(Config.apiUrl)
       .then(response => response.json())
       .then(data => setAllCountries(data.records))
@@ -47,7 +45,7 @@ function App() {
 
       {currentTab === tabsNames.table &&
         <Table allCountriesMain={allCountries} setTableState={setTableState} tableState={tableState} />}
-      {currentTab === tabsNames.chart && <Example allCountriesMain={allCountries} />}
+      {currentTab === tabsNames.chart && <Chart allCountriesMain={allCountries} />}
     </>
   );
 }
